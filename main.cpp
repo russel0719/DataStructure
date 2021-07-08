@@ -1,5 +1,13 @@
+// for debug and memory leak check
+#if defined(_DEBUG)
+#define _CRTDBG_MAP_ALLOC
+#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
+#endif
+#include <stdlib.h>
+#include <crtdbg.h>
+
 // Data Structure import
-#include "Singly_LinkedList.h"
+#include "LinkedList.h"
 #include "Queue.h"
 #include "Stack.h"
 #include "Tree.h"
@@ -10,21 +18,21 @@ using namespace std;
 
 void ll_test() {
 	cout << "------------------------------" << endl << "Start LinkedList Test" << endl << "------------------------------" << endl;
-	Singly_LinkedList sll;
+	LinkedList<int> ll;
 
-	sll.insert(1); // 1->null
-	sll.insert(3); // 1->3->null
-	sll.insert(4); // 1->3->4->null
-	sll.insert(2); // 1->3->4->2->null
-	sll.delete_index(2); //1->3->2->null
-	cout << sll.find(2) << endl; // return 2
-	sll.print(); // 1->3->2
-	cout << sll.size << endl;
+	ll.insert(1); // 1->null
+	ll.insert(3); // 1->3->null
+	ll.insert(4); // 1->3->4->null
+	ll.insert(2); // 1->3->4->2->null
+	ll.delete_index(2); //1->3->2->null
+	cout << ll.find(2) << endl; // return 2
+	ll.print(); // 1->3->2
+	cout << ll.size << endl;
 }
 
 void queue_test() {
 	cout << "------------------------------" << endl << "Start Queue Test" << endl << "------------------------------" << endl;
-	Queue q;
+	Queue<int> q;
 
 	q.push(1);	// front <- 1 <- rear
 	q.push(3);	// front <- 1 <- 3 <- rear
@@ -47,7 +55,7 @@ void queue_test() {
 
 void stack_test() {
 	cout << "------------------------------" << endl << "Start Stack Test" << endl << "------------------------------" << endl;
-	Stack s;
+	Stack<int> s;
 
 	s.push(1);
 	s.push(3);	// bottom -> 1 -> 3 -> top
@@ -70,7 +78,7 @@ void stack_test() {
 
 void tree_test() {
 	cout << "------------------------------" << endl << "Start Tree Test" << endl << "------------------------------" << endl;
-	Tree t;
+	Tree<int> t;
 
 	t.insert(6);
 	t.insert(7);
@@ -90,6 +98,7 @@ int main() {
 	ll_test();
 	queue_test();
 	stack_test();
-  
+
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	return 0;
 }
