@@ -1,3 +1,4 @@
+#pragma once
 template <typename T>
 class Node {
 public :
@@ -9,15 +10,18 @@ public :
 	~Node();
 };
 
-Node::Node() {
+template <typename T>
+Node<T>::Node() {
 	next = nullptr;
 }
 
-Node::~Node() {
+template <typename T>
+Node<T>::~Node() {
 	delete next;
 }
 
-Node::Node(T val) {
+template <typename T>
+Node<T>::Node(T val) {
 	data = val;
 	next = nullptr;
 }
